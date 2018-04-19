@@ -38,6 +38,7 @@ ext {
     junitVersion='4.12'
     runnerVersion='1.0.1'
     espressoVersion='3.0.1'
+    multidexVersion='1.0.3'
     gsonVersion = '2.8.2'
     okhttpVersion = '3.10.0'
     retrofitVersion = '2.4.0'
@@ -45,4 +46,9 @@ ext {
     greendaoVersion = '3.2.2'
     rxjavaVersion = '2.1.12'
     rxandroidVersion = '2.0.2'
+    rxbindingVersion = '2.1.0'
+    rxpermissionsVersion = '0.9.5@aar'
+    daggerVersion = '2.0.2'
+    javaxVersion = '10.0-b28'
+    butterknifeVersion = '8.8.1'
 }
