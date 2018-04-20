@@ -28,7 +28,7 @@ dependencies {
     //multidex
     api "com.android.support:multidex:$rootProject.multidexVersion"
     //net
-    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
+    api "com.google.code.gson:gson:$rootProject.gsonVersion"
     implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion"
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
@@ -38,16 +38,16 @@ dependencies {
     annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
 
     //dao
-    implementation "org.greenrobot:greendao:$rootProject.greendaoVersion"
+    api "org.greenrobot:greendao:$rootProject.greendaoVersion"
 
     //rx
-    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjavaVersion"
-    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
-    implementation "com.jakewharton.rxbinding2:rxbinding:$rootProject.rxbindingVersion"
-    implementation "com.tbruyelle.rxpermissions2:rxpermissions:$rootProject.rxpermissionsVersion"
+    api "io.reactivex.rxjava2:rxjava:$rootProject.rxjavaVersion"
+    api "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
+    api "com.jakewharton.rxbinding2:rxbinding:$rootProject.rxbindingVersion"
+    api "com.tbruyelle.rxpermissions2:rxpermissions:$rootProject.rxpermissionsVersion"
 
     //di
-    implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
+    api "com.google.dagger:dagger:$rootProject.daggerVersion"
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
     implementation "org.glassfish:javax.annotation:$rootProject.javaxVersion"
     //implementation "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
