@@ -1,1 +1,1 @@
-include ':app', ':basiclib'
+include ':app', ':basiclib', ':c-home', ':c-tree', ':c-navi', ':c-project'

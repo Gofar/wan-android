@@ -1,8 +1,10 @@
-apply plugin: 'com.android.application'
+ext.mainApp = true //设置为true，表示此module为主app module，一直以application方式编译
+apply from: 'https://raw.githubusercontent.com/luckybilly/CC/master/cc-settings.gradle'
+//注意：最好放在build.gradle中代码的第一行
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion '27.0.3'
+    buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
         applicationId "com.gofar.wanandroid"
         minSdkVersion 15
@@ -56,4 +58,9 @@ dependencies {
 //    implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
 //    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
     implementation project(':basiclib')
+
+    addComponent 'c-home'
+    addComponent 'c-navi'
+    addComponent 'c-project'
+    addComponent 'c-tree'
 }

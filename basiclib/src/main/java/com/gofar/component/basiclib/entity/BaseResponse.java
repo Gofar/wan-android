@@ -5,7 +5,7 @@ package com.gofar.component.basiclib.entity;
  * @date 2018/4/20 14:03
  * @since 1.0
  */
-public class BaseEntity<T> {
+public class BaseResponse<T> {
     /**
      * 请求成功返回码
      */
@@ -39,6 +39,10 @@ public class BaseEntity<T> {
         this.errorMsg = errorMsg;
     }
 
+    /**
+     * 是否请求成功
+     * @return
+     */
     public boolean isSuccess() {
         return errorCode == SUCCESS_CODE;
     }
