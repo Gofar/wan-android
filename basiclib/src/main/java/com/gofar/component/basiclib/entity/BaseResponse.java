@@ -1,5 +1,7 @@
 package com.gofar.component.basiclib.entity;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * @author lcf
  * @date 2018/4/20 14:03
@@ -11,9 +13,12 @@ public class BaseResponse<T> {
      */
     public static final int SUCCESS_CODE = 0;
 
-    private T data;
+    @SerializedName("errorCode")
     private int errorCode;
+    @SerializedName("errorMsg")
     private String errorMsg;
+    @SerializedName("data")
+    private T data;
 
     public T getData() {
         return data;
@@ -41,7 +46,7 @@ public class BaseResponse<T> {
 
     /**
      * 是否请求成功
-     * @return
+     * @return true:成功,false:失败
      */
     public boolean isSuccess() {
         return errorCode == SUCCESS_CODE;

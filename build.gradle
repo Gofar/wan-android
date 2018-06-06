@@ -19,6 +19,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url "https://jitpack.io" }
     }
 }
 
@@ -35,15 +36,15 @@ ext {
 
     // App dependencies
     supportLibraryVersion = '27.1.1'
-    constraintVersion='1.1.0'
-    junitVersion='4.12'
-    runnerVersion='1.0.1'
-    espressoVersion='3.0.1'
-    multidexVersion='1.0.3'
+    constraintVersion = '1.1.0'
+    junitVersion = '4.12'
+    runnerVersion = '1.0.2'
+    espressoVersion = '3.0.2'
+    multidexVersion = '1.0.3'
     gsonVersion = '2.8.2'
     okhttpVersion = '3.10.0'
     retrofitVersion = '2.4.0'
-    glideVersion = '4.6.1'
+    glideVersion = '4.7.1'
     greendaoVersion = '3.2.2'
     rxjavaVersion = '2.1.12'
     rxandroidVersion = '2.0.2'
@@ -52,4 +53,7 @@ ext {
     daggerVersion = '2.0.2'
     javaxVersion = '10.0-b28'
     butterknifeVersion = '8.8.1'
+    BaseRecyclerViewAdapterHelperVersion = '2.9.40'
+    smartrefreshVersion = '1.1.0-alpha-6'
+    loadinglayoutVersion = '1.0.1'
 }
