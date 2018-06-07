@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">basiclib</string>
+    <string name="network_not_connected_tips">请检查网络连接</string>
 </resources>
