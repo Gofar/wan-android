@@ -92,6 +92,11 @@ public abstract class ListLoader<T> {
      */
     protected abstract Observable<BaseListResponse<T>> getObservable(int pageIndex);
 
+    public void loadFirst(){
+        mState = STATE_FIRST_LOAD;
+        mPageIndex = DEFAULT_INDEX;
+        load(getObservable(mPageIndex));
+    }
     /**
      * load
      *
@@ -129,7 +134,7 @@ public abstract class ListLoader<T> {
      *
      * @return true if the index is 0.
      */
-    private boolean isRefresh() {
+    private boolean isFirst() {
         return mPageIndex == DEFAULT_INDEX;
     }
 
@@ -137,7 +142,7 @@ public abstract class ListLoader<T> {
      * load success,the return data is null.
      */
     private void noData() {
-        if (isRefresh()) {
+        if (isFirst()) {
             mAdapter.setNewData(null);
             if (mState == STATE_REFRESH) {
                 mRefreshLayout.finishRefresh();
@@ -155,7 +160,7 @@ public abstract class ListLoader<T> {
      * @param data return data
      */
     private void hasData(List<T> data) {
-        if (isRefresh()) {
+        if (isFirst()) {
             mAdapter.setNewData(data);
             if (mState == STATE_REFRESH) {
                 mRefreshLayout.finishRefresh();

@@ -49,7 +49,7 @@ public abstract class BaseListFragment<T> extends SupportFragment {
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
-        mListLoader.load(getObservable(0));
+        mListLoader.loadFirst();
     }
 
     private void initView() {
@@ -58,11 +58,15 @@ public abstract class BaseListFragment<T> extends SupportFragment {
         mListLoader = new ListLoader<T>(mLoadingLayout, mRefreshLayout, mAdapter, mCompositeDisposable) {
             @Override
             protected Observable<BaseListResponse<T>> getObservable(int pageIndex) {
-                return null;
+                return getData(pageIndex);
             }
         };
     }
 
-    protected abstract Observable<BaseListResponse<T>> getObservable(int pageIndex);
+    /**
+     * @param pageIndex
+     * @return
+     */
+    protected abstract Observable<BaseListResponse<T>> getData(int pageIndex);
 
 }
