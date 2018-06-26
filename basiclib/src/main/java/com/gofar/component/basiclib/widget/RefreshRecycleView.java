@@ -10,8 +10,11 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.gofar.component.basiclib.R;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import ezy.ui.layout.LoadingLayout;
 
@@ -63,8 +66,51 @@ public class RefreshRecycleView extends FrameLayout {
         return mRecyclerView;
     }
 
-    public void refresh(){
+    public void autoRefresh() {
         mRefreshLayout.autoRefresh();
     }
 
+    public void setEnableRefresh(boolean enabled) {
+        mRefreshLayout.setEnableRefresh(enabled);
+    }
+
+    public void setEnableLoadMore(boolean enabled) {
+        mRefreshLayout.setEnableLoadMore(enabled);
+    }
+
+    public void setAdapter(BaseQuickAdapter adapter) {
+        mRecyclerView.setAdapter(adapter);
+    }
+
+    public void setOnRefreshListener(OnRefreshListener listener) {
+        mRefreshLayout.setOnRefreshListener(listener);
+    }
+
+    public void setOnLoadMoreListener(OnLoadMoreListener listener) {
+        mRefreshLayout.setOnLoadMoreListener(listener);
+    }
+
+    public void setOnRetryListener(OnClickListener listener){
+        mLoadingLayout.setRetryListener(listener);
+    }
+
+    public void finishRefresh(boolean success){
+        mRefreshLayout.finishRefresh(success);
+    }
+
+    public void finishLoadMore(boolean success){
+        mRefreshLayout.finishLoadMore(success);
+    }
+
+    public void finishLoadMoreEnd(){
+        mRefreshLayout.finishLoadMoreWithNoMoreData();
+    }
+
+    public void showEmpty(){
+        mLoadingLayout.showEmpty();
+    }
+
+    public void showError(){
+        mLoadingLayout.showEmpty();
+    }
 }
