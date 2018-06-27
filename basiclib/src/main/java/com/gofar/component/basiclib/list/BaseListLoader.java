@@ -1,6 +1,7 @@
 package com.gofar.component.basiclib.list;
 
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -88,41 +89,20 @@ public class BaseListLoader<T> {
                     public void accept(BaseListResponse<T> baseListResponse) throws Exception {
                         if (baseListResponse.isSuccess()) {
                             List<T> data = baseListResponse.getDataList();
-                            if (isRefresh()) {
-                                mRefreshRecycleView.finishRefresh(true);
-                                mAdapter.setNewData(data);
-                                if (mAdapter.getData().isEmpty()) {
-                                    mRefreshRecycleView.showEmpty();
-                                }
-                            } else {
-                                if (data == null) {
-                                    mRefreshRecycleView.finishLoadMoreEnd();
-                                } else {
-                                    mAdapter.addData(data);
-                                    mRefreshRecycleView.finishLoadMore(true);
-                                }
-                            }
+                            handleSuccess(data);
                         } else {
-                            mPage--;
-                            if (isRefresh()){
-                                mRefreshRecycleView.finishRefresh(false);
-                                mRefreshRecycleView.showError();
-                            }else {
-                                mRefreshRecycleView.finishLoadMore(false);
+                            String msg = baseListResponse.getErrorMsg();
+                            if (TextUtils.isEmpty(msg)) {
+                                msg = "似乎出了点问题";
                             }
+                            handleFailed(msg);
                         }
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         throwable.printStackTrace();
-                        mPage--;
-                        if (isRefresh()){
-                            mRefreshRecycleView.finishRefresh(false);
-                            mRefreshRecycleView.showError();
-                        }else {
-                            mRefreshRecycleView.finishLoadMore(false);
-                        }
+                        handleFailed("似乎出了点问题");
                     }
                 })
         );
@@ -130,5 +110,34 @@ public class BaseListLoader<T> {
 
     private boolean isRefresh() {
         return mPage == DEFAULT_START;
+    }
+
+    private void handleSuccess(List<T> data) {
+        if (isRefresh()) {
+            mRefreshRecycleView.finishRefresh(true);
+            mAdapter.setNewData(data);
+            if (mAdapter.getData().isEmpty()) {
+                mRefreshRecycleView.showEmpty();
+            }
+        } else {
+            if (data == null) {
+                mRefreshRecycleView.finishLoadMoreEnd();
+            } else {
+                mAdapter.addData(data);
+                mRefreshRecycleView.finishLoadMore(true);
+            }
+        }
+    }
+
+    private void handleFailed(String errorMsg) {
+        mPage--;
+        if (isRefresh()) {
+            mRefreshRecycleView.finishRefresh(false);
+            if (mAdapter.getData().isEmpty()) {
+                mRefreshRecycleView.showError(errorMsg);
+            }
+        } else {
+            mRefreshRecycleView.finishLoadMore(false);
+        }
     }
 }

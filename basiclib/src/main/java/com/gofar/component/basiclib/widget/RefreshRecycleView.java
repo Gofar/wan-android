@@ -3,6 +3,7 @@ package com.gofar.component.basiclib.widget;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -90,27 +91,38 @@ public class RefreshRecycleView extends FrameLayout {
         mRefreshLayout.setOnLoadMoreListener(listener);
     }
 
-    public void setOnRetryListener(OnClickListener listener){
+    public void setOnRetryListener(OnClickListener listener) {
         mLoadingLayout.setRetryListener(listener);
     }
 
-    public void finishRefresh(boolean success){
+    public void finishRefresh(boolean success) {
         mRefreshLayout.finishRefresh(success);
     }
 
-    public void finishLoadMore(boolean success){
+    public void finishLoadMore(boolean success) {
         mRefreshLayout.finishLoadMore(success);
     }
 
-    public void finishLoadMoreEnd(){
+    public void finishLoadMoreEnd() {
         mRefreshLayout.finishLoadMoreWithNoMoreData();
     }
 
-    public void showEmpty(){
+    public void showEmpty() {
         mLoadingLayout.showEmpty();
     }
 
-    public void showError(){
+    public void showError() {
         mLoadingLayout.showEmpty();
+    }
+
+    public void showError(String errorMsg){
+        mLoadingLayout.setErrorText(errorMsg);
+        mLoadingLayout.showError();
+    }
+
+    public void showError(String errorMsg, @DrawableRes int errorResId){
+        mLoadingLayout.setErrorText(errorMsg);
+        mLoadingLayout.setErrorImage(errorResId);
+        mLoadingLayout.showError();
     }
 }
