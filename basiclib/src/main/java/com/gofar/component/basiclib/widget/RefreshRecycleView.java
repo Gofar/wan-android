@@ -7,6 +7,7 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
@@ -67,6 +68,34 @@ public class RefreshRecycleView extends FrameLayout {
         return mRecyclerView;
     }
 
+    public void setLayoutManager(RecyclerView.LayoutManager layoutManager){
+        mRecyclerView.setLayoutManager(layoutManager);
+    }
+
+    public void setEmptyText(String emptyText) {
+        mLoadingLayout.setEmptyText(emptyText);
+    }
+
+    public void setEmptyImage(@DrawableRes int emptyImage) {
+        mLoadingLayout.setEmptyImage(emptyImage);
+    }
+
+    public void setEmpty(String emptyText, @DrawableRes int emptyImage) {
+        mLoadingLayout.setEmptyText(emptyText).setEmptyImage(emptyImage);
+    }
+
+    public void setErrorText(String errorText) {
+        mLoadingLayout.setErrorText(errorText);
+    }
+
+    public void setErrorImage(@DrawableRes int errorImage) {
+        mLoadingLayout.setErrorImage(errorImage);
+    }
+
+    public void setError(String errorText, @DrawableRes int errorImage) {
+        mLoadingLayout.setErrorText(errorText).setErrorImage(errorImage);
+    }
+
     public void autoRefresh() {
         mRefreshLayout.autoRefresh();
     }
@@ -115,14 +144,14 @@ public class RefreshRecycleView extends FrameLayout {
         mLoadingLayout.showEmpty();
     }
 
-    public void showError(String errorMsg){
-        mLoadingLayout.setErrorText(errorMsg);
-        mLoadingLayout.showError();
+    public void showError(String errorMsg) {
+        if (TextUtils.isEmpty(errorMsg)) {
+            errorMsg = getContext().getString(R.string.default_http_error_msg);
+        }
+        mLoadingLayout.setErrorText(errorMsg).showError();
     }
 
-    public void showError(String errorMsg, @DrawableRes int errorResId){
-        mLoadingLayout.setErrorText(errorMsg);
-        mLoadingLayout.setErrorImage(errorResId);
-        mLoadingLayout.showError();
+    public void showError(String errorMsg, @DrawableRes int errorResId) {
+        mLoadingLayout.setErrorText(errorMsg).setErrorImage(errorResId).showError();
     }
 }

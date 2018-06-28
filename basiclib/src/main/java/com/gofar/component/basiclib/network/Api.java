@@ -18,6 +18,9 @@ public class Api {
 
     private Retrofit mRetrofit;
 
+    private Api() {
+    }
+
     public static Api getInstance() {
         return SingletonHolder.INSTANCE;
     }

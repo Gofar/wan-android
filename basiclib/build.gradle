@@ -21,8 +21,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     // android support
-    implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
-    implementation "com.android.support:design:$rootProject.supportLibraryVersion"
+    api "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    api "com.android.support:design:$rootProject.supportLibraryVersion"
     testImplementation "junit:junit:$rootProject.junitVersion"
     androidTestImplementation "com.android.support.test:runner:$rootProject.runnerVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
@@ -32,7 +32,7 @@ dependencies {
     api "com.google.code.gson:gson:$rootProject.gsonVersion"
     implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion"
-    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
+    api "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
     implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
@@ -40,6 +40,7 @@ dependencies {
 
     //dao
     api "org.greenrobot:greendao:$rootProject.greendaoVersion"
+    api "org.greenrobot:eventbus:$rootProject.eventbusVersion"
 
     //rx
     api "io.reactivex.rxjava2:rxjava:$rootProject.rxjavaVersion"
@@ -55,10 +56,11 @@ dependencies {
     //annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
 
     //rv
-    implementation "com.github.CymChad:BaseRecyclerViewAdapterHelper:$rootProject.BaseRecyclerViewAdapterHelperVersion"
+    api "com.github.CymChad:BaseRecyclerViewAdapterHelper:$rootProject.BaseRecyclerViewAdapterHelperVersion"
     implementation "com.scwang.smartrefresh:SmartRefreshLayout:$rootProject.smartrefreshVersion"
     implementation "com.scwang.smartrefresh:SmartRefreshHeader:$rootProject.smartrefreshVersion"
     implementation "com.github.czy1121:loadinglayout:$rootProject.loadinglayoutVersion"
 
-    implementation "me.yokeyword:fragmentation:$rootProject.fragmentationVersion"
+    api "me.yokeyword:fragmentation:$rootProject.fragmentationVersion"
+    api "com.gofar:titlebar:$rootProject.titlebarVersion"
 }

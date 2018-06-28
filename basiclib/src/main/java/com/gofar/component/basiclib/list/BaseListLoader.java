@@ -1,7 +1,6 @@
 package com.gofar.component.basiclib.list;
 
 import android.support.annotation.NonNull;
-import android.text.TextUtils;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -25,8 +24,10 @@ import io.reactivex.schedulers.Schedulers;
  * @date 2018/6/25 17:15
  * @since 1.0
  */
-public class BaseListLoader<T> {
-
+public abstract class BaseListLoader<T> {
+    /**
+     * 默认分页起始页码
+     */
     public static final int DEFAULT_START = 0;
 
     private CompositeDisposable mCompositeDisposable;
@@ -50,7 +51,12 @@ public class BaseListLoader<T> {
         init(enableRefresh, enableLoadMore);
     }
 
-
+    /**
+     * 初始化
+     *
+     * @param enableRefresh  是否能下拉刷新
+     * @param enableLoadMore 是否能加载更多
+     */
     private void init(boolean enableRefresh, boolean enableLoadMore) {
         mRefreshRecycleView.setEnableRefresh(enableRefresh);
         mRefreshRecycleView.setEnableLoadMore(enableLoadMore);
@@ -64,25 +70,48 @@ public class BaseListLoader<T> {
         mRefreshRecycleView.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                mPage++;
-                //load();
+                loadMore();
             }
         });
         mRefreshRecycleView.setOnRetryListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mRefreshRecycleView.autoRefresh();
+                autoRefresh();
             }
         });
     }
 
-    public void refresh() {
-        mPage = DEFAULT_START;
-        //load();
+    public void autoRefresh() {
+        mRefreshRecycleView.autoRefresh();
     }
 
-    public void load(Observable<BaseListResponse<T>> observable) {
-        mCompositeDisposable.add(observable.subscribeOn(Schedulers.io())
+    /**
+     * 刷新
+     */
+    public void refresh() {
+        mPage = DEFAULT_START;
+        load(mPage);
+    }
+
+    /**
+     * 加载更多
+     */
+    public void loadMore() {
+        mPage++;
+        load(mPage);
+    }
+
+    /**
+     * 拿到网络请求的Observable
+     *
+     * @param page 页码
+     * @return Observable
+     */
+    protected abstract Observable<BaseListResponse<T>> getObservable(int page);
+
+    public void load(int page) {
+        mCompositeDisposable.add(getObservable(page)
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<BaseListResponse<T>>() {
                     @Override
@@ -91,18 +120,14 @@ public class BaseListLoader<T> {
                             List<T> data = baseListResponse.getDataList();
                             handleSuccess(data);
                         } else {
-                            String msg = baseListResponse.getErrorMsg();
-                            if (TextUtils.isEmpty(msg)) {
-                                msg = "似乎出了点问题";
-                            }
-                            handleFailed(msg);
+                            handleFailed(baseListResponse.getErrorMsg());
                         }
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         throwable.printStackTrace();
-                        handleFailed("似乎出了点问题");
+                        handleFailed("");
                     }
                 })
         );
@@ -130,7 +155,6 @@ public class BaseListLoader<T> {
     }
 
     private void handleFailed(String errorMsg) {
-        mPage--;
         if (isRefresh()) {
             mRefreshRecycleView.finishRefresh(false);
             if (mAdapter.getData().isEmpty()) {
@@ -138,6 +162,7 @@ public class BaseListLoader<T> {
             }
         } else {
             mRefreshRecycleView.finishLoadMore(false);
+            mPage--;
         }
     }
 }

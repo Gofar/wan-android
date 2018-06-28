@@ -13,9 +13,9 @@ public class ApiPath {
 
     private static String getBaseUrl() {
         if (BuildConfig.DEBUG) {
-            return "http://www.wanandroid.com";
+            return "http://www.wanandroid.com/";
         } else {
-            return "http://www.wanandroid.com";
+            return "http://www.wanandroid.com/";
         }
     }
 }
