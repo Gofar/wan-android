@@ -23,6 +23,7 @@ dependencies {
     // android support
     api "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
     api "com.android.support:design:$rootProject.supportLibraryVersion"
+    api "com.android.support.constraint:constraint-layout:$rootProject.constraintVersion"
     testImplementation "junit:junit:$rootProject.junitVersion"
     androidTestImplementation "com.android.support.test:runner:$rootProject.runnerVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
@@ -63,4 +64,6 @@ dependencies {
 
     api "me.yokeyword:fragmentation:$rootProject.fragmentationVersion"
     api "com.gofar:titlebar:$rootProject.titlebarVersion"
+
+    api "com.luojilab.ddcomponent:componentlib:$rootProject.componentlibVersion"
 }

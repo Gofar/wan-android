@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.luojilab.component.componentlib.service.AutowiredService;
+
 import org.greenrobot.eventbus.EventBus;
 
 import io.reactivex.disposables.CompositeDisposable;
@@ -19,6 +21,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AutowiredService.Factory.getInstance().create().autowire(this);
         initialize();
         setContentView(getLayoutId());
         if (useEventBus()) {
@@ -50,7 +53,12 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     protected abstract void initData();
 
+    /**
+     * 是否使用EventBus
+     *
+     * @return True if use.
+     */
     protected boolean useEventBus() {
-        return true;
+        return false;
     }
 }

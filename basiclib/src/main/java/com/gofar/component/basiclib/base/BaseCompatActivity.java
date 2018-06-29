@@ -32,7 +32,8 @@ public abstract class BaseCompatActivity extends BaseActivity {
         FrameLayout mLayoutContent = findViewById(R.id.layout_content);
         View customView = LayoutInflater.from(this).inflate(getContentLayoutId(), null);
         if (customView != null) {
-            mLayoutContent.addView(mLayoutContent);
+            mLayoutContent.addView(customView);
+            initContentView(customView);
         }
     }
 
@@ -42,6 +43,8 @@ public abstract class BaseCompatActivity extends BaseActivity {
      * @return
      */
     protected abstract int getContentLayoutId();
+
+    protected abstract void initContentView(View content);
 
     /**
      * 配置ToolBar

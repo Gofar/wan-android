@@ -1,6 +1,4 @@
-ext.mainApp = true //设置为true，表示此module为主app module，一直以application方式编译
-apply from: 'https://raw.githubusercontent.com/luckybilly/CC/master/cc-settings.gradle'
-//注意：最好放在build.gradle中代码的第一行
+apply plugin: 'com.dd.comgradle'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -26,41 +24,11 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    testImplementation "junit:junit:$rootProject.junitVersion"
-    androidTestImplementation "com.android.support.test:runner:$rootProject.runnerVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
 
-    implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
-    implementation "com.android.support.constraint:constraint-layout:$rootProject.constraintVersion"
+    api project(':componentservice')
+}
 
-//    //multidex
-//    implementation "com.android.support:multidex:$rootProject.multidexVersion"
-//    //net
-//    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
-//    implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
-//    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion"
-//    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
-//    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
-//    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
-//    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
-//    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
-//
-//    //dao
-//    implementation "org.greenrobot:greendao:$rootProject.greendaoVersion"
-//
-//    //rx
-//    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjavaVersion"
-//    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
-//    implementation "com.jakewharton.rxbinding2:rxbinding:$rootProject.rxbindingVersion"
-//    implementation "com.tbruyelle.rxpermissions2:rxpermissions:$rootProject.rxpermissionsVersion"
-//
-//    //di
-//    implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
-//    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
-    implementation project(':basiclib')
-
-    addComponent 'c-home'
-    addComponent 'c-navi'
-    addComponent 'c-project'
-    addComponent 'c-tree'
+combuild{
+    applicationName = 'com.gofar.wanandroid.App'
+    isRegisterCompoAuto = true
 }

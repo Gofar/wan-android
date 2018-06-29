@@ -12,7 +12,8 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?colorPrimary"
         app:popupTheme="@style/AppTheme.PopupOverlay"
-        app:theme="@style/AppTheme.AppBarOverlay" />
+        app:theme="@style/AppTheme.AppBarOverlay"
+        app:titleTextAppearance="@style/Toolbar.TitleText"/>
 
     <FrameLayout
         android:id="@+id/layout_content"

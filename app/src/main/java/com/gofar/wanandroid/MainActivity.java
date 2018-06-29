@@ -1,13 +1,40 @@
 package com.gofar.wanandroid;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.support.design.widget.BottomNavigationView;
+import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+import com.gofar.component.basiclib.base.BaseCompatActivity;
+import com.gofar.titlebar.TitleBar;
+import com.gofar.wanandroid.utils.BottomNavigationViewHelper;
+import com.luojilab.router.facade.annotation.RouteNode;
+
+@RouteNode(path = "/main", desc = "主页")
+public class MainActivity extends BaseCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected void initialize() {
+
+    }
+
+    @Override
+    protected int getContentLayoutId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initContentView(View content) {
+        BottomNavigationView bottomNavigationView = content.findViewById(R.id.bottom_navigation_view);
+        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+    }
+
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    protected void initToolBar(TitleBar toolbar) {
+        toolbar.setCenterTitle("首页");
     }
 }

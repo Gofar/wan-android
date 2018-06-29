@@ -39,8 +39,8 @@ public abstract class BaseFragment extends SupportFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if (useEventBus()){
-            if (!EventBus.getDefault().isRegistered(this)){
+        if (useEventBus()) {
+            if (!EventBus.getDefault().isRegistered(this)) {
                 EventBus.getDefault().register(this);
             }
         }
@@ -73,13 +73,18 @@ public abstract class BaseFragment extends SupportFragment {
      */
     protected abstract void initData();
 
-    protected boolean useEventBus(){
-        return true;
+    /**
+     * 是否使用EventBus
+     *
+     * @return True if use.
+     */
+    protected boolean useEventBus() {
+        return false;
     }
 
     @Override
     public void onDestroy() {
-        if (useEventBus()){
+        if (useEventBus()) {
             EventBus.getDefault().unregister(this);
         }
         mCompositeDisposable.dispose();
