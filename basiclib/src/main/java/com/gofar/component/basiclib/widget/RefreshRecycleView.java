@@ -33,20 +33,23 @@ public class RefreshRecycleView extends FrameLayout {
 
     public RefreshRecycleView(@NonNull Context context) {
         super(context);
+        init(context);
     }
 
     public RefreshRecycleView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        init(context);
     }
 
     public RefreshRecycleView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init(context);
     }
-
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public RefreshRecycleView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
+        init(context);
     }
 
     private void init(Context context) {

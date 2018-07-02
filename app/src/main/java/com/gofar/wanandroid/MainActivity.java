@@ -1,15 +1,28 @@
 package com.gofar.wanandroid;
 
+import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.gofar.component.basiclib.base.BaseCompatActivity;
+import com.gofar.componentservice.home.HomeService;
 import com.gofar.titlebar.TitleBar;
 import com.gofar.wanandroid.utils.BottomNavigationViewHelper;
+import com.luojilab.component.componentlib.router.Router;
 import com.luojilab.router.facade.annotation.RouteNode;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RouteNode(path = "/main", desc = "主页")
 public class MainActivity extends BaseCompatActivity {
+
+    private List<Fragment> mFragments;
+    private int mLastIndex = -1;
 
     @Override
     protected void initialize() {
@@ -25,6 +38,36 @@ public class MainActivity extends BaseCompatActivity {
     protected void initContentView(View content) {
         BottomNavigationView bottomNavigationView = content.findViewById(R.id.bottom_navigation_view);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.tab_main_home:
+                        switchFragment(0);
+                        break;
+                    case R.id.tab_main_navigation:
+                        switchFragment(1);
+                        break;
+                    case R.id.tab_main_project:
+                        switchFragment(2);
+                        break;
+                    case R.id.tab_main_tree:
+                        switchFragment(3);
+                        break;
+                    default:
+                        break;
+                }
+                return true;
+            }
+        });
+
+        mFragments = new ArrayList<>();
+        mFragments.add(getFragment());
+        mFragments.add(getFragment());
+        mFragments.add(getFragment());
+        mFragments.add(getFragment());
+
+        switchFragment(0);
     }
 
 
@@ -36,5 +79,36 @@ public class MainActivity extends BaseCompatActivity {
     @Override
     protected void initToolBar(TitleBar toolbar) {
         toolbar.setCenterTitle("首页");
+        toolbar.setCenterTitleColor(Color.BLACK);
+    }
+
+    private Fragment getFragment() {
+        Router router = Router.getInstance();
+        if (router.getService(HomeService.class.getSimpleName()) != null) {
+            HomeService service = (HomeService) router.getService(HomeService.class.getSimpleName());
+            return service.getHomeFragment();
+        }
+        return null;
+    }
+
+    private void switchFragment(int position) {
+        if (position == mLastIndex) {
+            return;
+        }
+        if (position > mFragments.size()) {
+            return;
+        }
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        if (mLastIndex != -1) {
+            ft.hide(mFragments.get(mLastIndex));
+        }
+        Fragment newFragment = mFragments.get(position);
+        if (!newFragment.isAdded()) {
+            ft.add(R.id.layout_content, newFragment);
+        } else {
+            ft.show(mFragments.get(position));
+        }
+        mLastIndex = position;
+        ft.commit();
     }
 }

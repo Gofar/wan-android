@@ -30,7 +30,7 @@ public abstract class BaseCompatFragment extends BaseFragment {
         FrameLayout mLayoutContent = parent.findViewById(R.id.layout_content);
         View customView = LayoutInflater.from(mContext).inflate(getContentLayoutId(), null);
         if (customView != null) {
-            mLayoutContent.addView(mLayoutContent);
+            mLayoutContent.addView(customView);
         }
     }
 

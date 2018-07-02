@@ -2,20 +2,20 @@ package com.gofar.component.basiclib.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 
 import com.luojilab.component.componentlib.service.AutowiredService;
 
 import org.greenrobot.eventbus.EventBus;
 
 import io.reactivex.disposables.CompositeDisposable;
+import me.yokeyword.fragmentation.SupportActivity;
 
 /**
  * @author lcf
  * @date 2018/6/28 15:35
  * @since 1.0
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends SupportActivity {
     protected CompositeDisposable mCompositeDisposable = new CompositeDisposable();
 
     @Override
