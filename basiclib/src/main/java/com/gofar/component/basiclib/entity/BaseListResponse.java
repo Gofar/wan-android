@@ -58,7 +58,7 @@ public class BaseListResponse<T> {
      */
     public List<T> getDataList() {
         if (data != null) {
-            List<T> dataList = data.getDatas();
+            List<T> dataList = data.getDataList();
             if (dataList != null && !dataList.isEmpty()) {
                 return dataList;
             }
@@ -73,7 +73,8 @@ public class BaseListResponse<T> {
         private int pageCount;
         private int size;
         private int total;
-        private List<T> datas;
+        @SerializedName("datas")
+        private List<T> dataList;
 
         public int getCurPage() {
             return curPage;
@@ -123,12 +124,12 @@ public class BaseListResponse<T> {
             this.total = total;
         }
 
-        public List<T> getDatas() {
-            return datas;
+        public List<T> getDataList() {
+            return dataList;
         }
 
-        public void setDatas(List<T> datas) {
-            this.datas = datas;
+        public void setDataList(List<T> dataList) {
+            this.dataList = dataList;
         }
     }
 }
