@@ -9,8 +9,8 @@
     <com.gofar.titlebar.TitleBar
         android:id="@+id/title_Bar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?colorPrimary"
+        android:layout_height="48dp"
+        android:background="#00FFFF"
         app:popupTheme="@style/AppTheme.PopupOverlay"
         app:theme="@style/AppTheme.AppBarOverlay"
         app:titleTextAppearance="@style/Toolbar.TitleText"/>

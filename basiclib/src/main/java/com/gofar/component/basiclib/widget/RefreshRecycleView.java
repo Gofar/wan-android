@@ -57,6 +57,7 @@ public class RefreshRecycleView extends FrameLayout {
         mRefreshLayout = findViewById(R.id.refreshLayout);
         mLoadingLayout = findViewById(R.id.loadingLayout);
         mRecyclerView = findViewById(R.id.recyclerView);
+        mLoadingLayout.showContent();
     }
 
     public RefreshLayout getRefreshLayout() {

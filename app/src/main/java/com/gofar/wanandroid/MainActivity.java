@@ -104,7 +104,7 @@ public class MainActivity extends BaseCompatActivity {
         }
         Fragment newFragment = mFragments.get(position);
         if (!newFragment.isAdded()) {
-            ft.add(R.id.layout_content, newFragment);
+            ft.add(R.id.fl_content, newFragment);
         } else {
             ft.show(mFragments.get(position));
         }

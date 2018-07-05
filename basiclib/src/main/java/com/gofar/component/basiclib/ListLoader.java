@@ -98,7 +98,7 @@ public class ListLoader<T> {
                             if (baseListResponse.isSuccess()) {
                                 BaseListResponse.DataWrapperEntity<T> wrapperEntity = baseListResponse.getData();
                                 if (wrapperEntity != null) {
-                                    List<T> data = wrapperEntity.getDatas();
+                                    List<T> data = wrapperEntity.getDataList();
                                     if (data == null || data.isEmpty()) {
                                         if (isRefreshOrFirstLoad()) {
                                             //mAdapter.setEmptyView();
