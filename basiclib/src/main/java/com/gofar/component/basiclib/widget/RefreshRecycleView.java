@@ -72,7 +72,7 @@ public class RefreshRecycleView extends FrameLayout {
         return mRecyclerView;
     }
 
-    public void setLayoutManager(RecyclerView.LayoutManager layoutManager){
+    public void setLayoutManager(RecyclerView.LayoutManager layoutManager) {
         mRecyclerView.setLayoutManager(layoutManager);
     }
 
@@ -110,6 +110,10 @@ public class RefreshRecycleView extends FrameLayout {
 
     public void setEnableLoadMore(boolean enabled) {
         mRefreshLayout.setEnableLoadMore(enabled);
+    }
+
+    public void setEnableAutoLoadMore(boolean enabled) {
+        mRefreshLayout.setEnableAutoLoadMore(enabled);
     }
 
     public void setAdapter(BaseQuickAdapter adapter) {

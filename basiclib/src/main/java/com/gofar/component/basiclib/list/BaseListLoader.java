@@ -1,6 +1,7 @@
 package com.gofar.component.basiclib.list;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -126,6 +127,7 @@ public abstract class BaseListLoader<T> {
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
+                        Log.e("listloader", "网络错误");
                         throwable.printStackTrace();
                         handleFailed("");
                     }

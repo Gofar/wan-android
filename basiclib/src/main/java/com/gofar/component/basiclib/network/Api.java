@@ -1,5 +1,6 @@
 package com.gofar.component.basiclib.network;
 
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.gofar.component.basiclib.BuildConfig;
 
 import java.util.concurrent.TimeUnit;
@@ -31,7 +32,7 @@ public class Api {
                 .readTimeout(30, TimeUnit.SECONDS)
                 .writeTimeout(30, TimeUnit.SECONDS);
         if (BuildConfig.DEBUG) {
-            //builder.addNetworkInterceptor();
+            builder.addNetworkInterceptor(new StethoInterceptor());
         }
         return builder;
     }

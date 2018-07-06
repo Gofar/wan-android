@@ -38,6 +38,8 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
     implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
     annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
+    api "com.facebook.stetho:stetho:$rootProject.stethoVersion"
+    api "com.facebook.stetho:stetho-okhttp3:$rootProject.stethoVersion"
 
     //dao
     api "org.greenrobot:greendao:$rootProject.greendaoVersion"
@@ -58,8 +60,8 @@ dependencies {
 
     //rv
     api "com.github.CymChad:BaseRecyclerViewAdapterHelper:$rootProject.BaseRecyclerViewAdapterHelperVersion"
-    implementation "com.scwang.smartrefresh:SmartRefreshLayout:$rootProject.smartrefreshVersion"
-    implementation "com.scwang.smartrefresh:SmartRefreshHeader:$rootProject.smartrefreshVersion"
+    api "com.scwang.smartrefresh:SmartRefreshLayout:$rootProject.smartrefreshVersion"
+    api "com.scwang.smartrefresh:SmartRefreshHeader:$rootProject.smartrefreshVersion"
     implementation "com.github.czy1121:loadinglayout:$rootProject.loadinglayoutVersion"
 
     api "me.yokeyword:fragmentation:$rootProject.fragmentationVersion"

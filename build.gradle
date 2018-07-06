@@ -44,6 +44,7 @@ ext {
     gsonVersion = '2.8.2'
     okhttpVersion = '3.10.0'
     retrofitVersion = '2.4.0'
+    stethoVersion = '1.5.0'
     glideVersion = '4.7.1'
     greendaoVersion = '3.2.2'
     eventbusVersion = '3.0.0'

@@ -7,7 +7,6 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.gofar.component.basiclib.base.BaseCompatListFragment;
 import com.gofar.component.basiclib.entity.BaseListResponse;
 import com.gofar.component.basiclib.network.Api;
-import com.gofar.titlebar.TitleBar;
 import com.gofar.wanandroid.c.home.HomeApi;
 import com.gofar.wanandroid.c.home.entity.HomeItemEntity;
 
@@ -37,9 +36,8 @@ public class HomeFragment extends BaseCompatListFragment<HomeItemEntity> {
     }
 
     @Override
-    protected void initToolBar(TitleBar toolbar) {
-        super.initToolBar(toolbar);
-        toolbar.setCenterTitle("Home");
+    protected boolean needToolbar() {
+        return false;
     }
 
     @Override
@@ -52,4 +50,5 @@ public class HomeFragment extends BaseCompatListFragment<HomeItemEntity> {
     public Observable<BaseListResponse<HomeItemEntity>> getObservable(int page) {
         return Api.getInstance().build(HomeApi.class).homeList(page);
     }
+
 }
