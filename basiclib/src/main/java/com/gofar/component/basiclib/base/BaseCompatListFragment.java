@@ -40,12 +40,7 @@ public abstract class BaseCompatListFragment<T> extends BaseCompatFragment
         mRefreshRecycleView.setLayoutManager(getLayoutManager());
         mBaseAdapter = getAdapter();
         mBaseAdapter.setOnItemClickListener(this);
-        mBaseListLoader = new BaseListLoader<T>(mCompositeDisposable, mRefreshRecycleView, mBaseAdapter, needRefresh(), needLoadMore()) {
-            @Override
-            protected Observable<BaseListResponse<T>> getObservable(int page) {
-                return BaseCompatListFragment.this.getObservable(page);
-            }
-        };
+        mBaseListLoader = getBaseListLoader();
     }
 
     @Override
@@ -84,5 +79,14 @@ public abstract class BaseCompatListFragment<T> extends BaseCompatFragment
     @Override
     public RecyclerView.LayoutManager getLayoutManager() {
         return new LinearLayoutManager(mContext);
+    }
+
+    protected BaseListLoader<T> getBaseListLoader() {
+        return new BaseListLoader<T>(mCompositeDisposable, mRefreshRecycleView, mBaseAdapter, needRefresh(), needLoadMore()) {
+            @Override
+            protected Observable<BaseListResponse<T>> getObservable(int page) {
+                return BaseCompatListFragment.this.getObservable(page);
+            }
+        };
     }
 }

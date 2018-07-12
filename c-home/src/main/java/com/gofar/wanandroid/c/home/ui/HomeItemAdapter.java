@@ -27,7 +27,7 @@ public class HomeItemAdapter extends BaseQuickAdapter<FeedArticleEntity, BaseVie
         ImageView imageView = helper.getView(R.id.iv_pic);
         String url = item.getEnvelopePic();
         if (!TextUtils.isEmpty(url)) {
-            GlideImageLoader.load(mContext, url, imageView);
+            GlideImageLoader.load(mContext, url, imageView,R.drawable.place_holder);
         }
     }
 }

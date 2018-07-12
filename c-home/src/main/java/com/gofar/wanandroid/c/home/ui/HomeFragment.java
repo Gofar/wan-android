@@ -1,7 +1,5 @@
 package com.gofar.wanandroid.c.home.ui;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.DividerItemDecoration;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +10,7 @@ import com.gofar.component.basiclib.base.BaseCompatListFragment;
 import com.gofar.component.basiclib.entity.BaseListResponse;
 import com.gofar.component.basiclib.entity.BaseResponse;
 import com.gofar.component.basiclib.image.BannerImageLoader;
+import com.gofar.component.basiclib.list.BaseListLoader;
 import com.gofar.component.basiclib.network.Api;
 import com.gofar.wanandroid.c.home.HomeApi;
 import com.gofar.wanandroid.c.home.R;
@@ -59,14 +58,6 @@ public class HomeFragment extends BaseCompatListFragment<FeedArticleEntity> {
     }
 
     @Override
-    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
-        super.onLazyInitView(savedInstanceState);
-        if (needLazyLoad()) {
-            loadBanner();
-        }
-    }
-
-    @Override
     public BaseQuickAdapter<FeedArticleEntity, ? extends BaseViewHolder> getAdapter() {
         mRefreshRecycleView.getRecyclerView().addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL));
         mHomeItemAdapter = new HomeItemAdapter();
@@ -77,6 +68,28 @@ public class HomeFragment extends BaseCompatListFragment<FeedArticleEntity> {
     @Override
     public Observable<BaseListResponse<FeedArticleEntity>> getObservable(int page) {
         return Api.getInstance().build(HomeApi.class).homeList(page);
+    }
+
+    @Override
+    protected BaseListLoader<FeedArticleEntity> getBaseListLoader() {
+        return new BaseListLoader<FeedArticleEntity>(mCompositeDisposable, mRefreshRecycleView, mBaseAdapter, needRefresh(), needLoadMore()) {
+            @Override
+            protected Observable<BaseListResponse<FeedArticleEntity>> getObservable(int page) {
+                return HomeFragment.this.getObservable(page);
+            }
+
+            @Override
+            public void autoRefresh() {
+                super.autoRefresh();
+                loadBanner();
+            }
+
+            @Override
+            public void refresh() {
+                super.refresh();
+                loadBanner();
+            }
+        };
     }
 
     private View getHeader() {
