@@ -62,4 +62,5 @@ ext {
     titlebarVersion = '1.0.1'
 
     componentlibVersion = '1.3.0'
+    bannerVersion = '1.4.10'
 }
