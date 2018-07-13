@@ -1,5 +1,6 @@
 package com.gofar.wanandroid.c.home.ui;
 
+import android.content.Intent;
 import android.support.v7.widget.DividerItemDecoration;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.gofar.component.basiclib.base.BaseCompatListFragment;
+import com.gofar.component.basiclib.base.WebActivity;
 import com.gofar.component.basiclib.entity.BaseListResponse;
 import com.gofar.component.basiclib.entity.BaseResponse;
 import com.gofar.component.basiclib.image.BannerImageLoader;
@@ -19,6 +21,7 @@ import com.gofar.wanandroid.c.home.entity.FeedArticleEntity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
+import com.youth.banner.listener.OnBannerListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +42,10 @@ public class HomeFragment extends BaseCompatListFragment<FeedArticleEntity> {
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-
+        FeedArticleEntity entity = mHomeItemAdapter.getData().get(position);
+        Intent intent = new Intent(mContext, WebActivity.class);
+        intent.putExtra("url", entity.getApkLink());
+        startActivity(intent);
     }
 
     @Override
@@ -76,12 +82,6 @@ public class HomeFragment extends BaseCompatListFragment<FeedArticleEntity> {
             @Override
             protected Observable<BaseListResponse<FeedArticleEntity>> getObservable(int page) {
                 return HomeFragment.this.getObservable(page);
-            }
-
-            @Override
-            public void autoRefresh() {
-                super.autoRefresh();
-                loadBanner();
             }
 
             @Override
@@ -122,7 +122,7 @@ public class HomeFragment extends BaseCompatListFragment<FeedArticleEntity> {
             return;
         }
         List<String> bannerTitles = new ArrayList<>();
-        List<String> bannerUrls = new ArrayList<>();
+        final List<String> bannerUrls = new ArrayList<>();
         List<String> bannerImageUrls = new ArrayList<>();
         for (BannerEntity entity : list) {
             bannerTitles.add(entity.getTitle());
@@ -146,12 +146,14 @@ public class HomeFragment extends BaseCompatListFragment<FeedArticleEntity> {
         //设置指示器位置（当banner模式中有指示器时）
         mBanner.setIndicatorGravity(BannerConfig.CENTER);
 
-//        mBanner.setOnBannerListener(new OnBannerListener() {
-//            @Override
-//            public void OnBannerClick(int position) {
-//
-//            }
-//        });
+        mBanner.setOnBannerListener(new OnBannerListener() {
+            @Override
+            public void OnBannerClick(int position) {
+                Intent intent = new Intent(mContext, WebActivity.class);
+                intent.putExtra("url", bannerUrls.get(position));
+                startActivity(intent);
+            }
+        });
         mBanner.start();
     }
 
