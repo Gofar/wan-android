@@ -1,6 +1,7 @@
 package com.gofar.wanandroid.c.home.ui;
 
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -27,7 +28,11 @@ public class HomeItemAdapter extends BaseQuickAdapter<FeedArticleEntity, BaseVie
         ImageView imageView = helper.getView(R.id.iv_pic);
         String url = item.getEnvelopePic();
         if (!TextUtils.isEmpty(url)) {
-            GlideImageLoader.load(mContext, url, imageView,R.drawable.place_holder);
+            imageView.setVisibility(View.VISIBLE);
+            GlideImageLoader.load(mContext, url, imageView, R.drawable.place_holder);
+        } else {
+            imageView.setImageResource(0);
+            imageView.setVisibility(View.GONE);
         }
     }
 }

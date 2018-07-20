@@ -13,7 +13,13 @@
         android:background="?colorPrimary"
         app:popupTheme="@style/AppTheme.PopupOverlay"
         app:theme="@style/AppTheme.AppBarOverlay"
-        app:titleTextAppearance="@style/Toolbar.TitleText"/>
+        app:titleTextAppearance="@style/Toolbar.TitleText" />
+
+    <View
+        android:id="@+id/bar_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#c6c6c6" />
 
     <FrameLayout
         android:id="@+id/layout_content"

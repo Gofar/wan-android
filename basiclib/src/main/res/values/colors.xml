@@ -3,4 +3,7 @@
     <color name="colorPrimary">#247C95</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#247C95</color>
+    <color name="transparent">#00000000</color>
+    <color name="tab_bac">#049486</color>
+    <color name="light_tab_bac">#45c1b5</color>
 </resources>

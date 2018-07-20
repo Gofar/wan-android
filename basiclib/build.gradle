@@ -69,4 +69,5 @@ dependencies {
 
     api "com.luojilab.ddcomponent:componentlib:$rootProject.componentlibVersion"
     api "com.youth.banner:banner:$rootProject.bannerVersion"
+    api "com.just.agentweb:agentweb:$rootProject.agentwebVersion"
 }

@@ -60,7 +60,7 @@ ext {
     loadinglayoutVersion = '1.0.1'
     fragmentationVersion = '1.3.4'
     titlebarVersion = '1.0.1'
-
     componentlibVersion = '1.3.0'
     bannerVersion = '1.4.10'
+    agentwebVersion = '4.0.2'
 }

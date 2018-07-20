@@ -1,5 +1,6 @@
 package com.gofar.component.basiclib.base;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -16,6 +17,7 @@ import com.gofar.titlebar.TitleBar;
 public abstract class BaseCompatActivity extends BaseActivity {
     protected LinearLayout mRoot;
     protected TitleBar mToolbar;
+    protected View mBarDivider;
 
     @Override
     protected int getLayoutId() {
@@ -26,6 +28,7 @@ public abstract class BaseCompatActivity extends BaseActivity {
     protected void initView() {
         mRoot = findViewById(R.id.root);
         mToolbar = findViewById(R.id.title_Bar);
+        mBarDivider = findViewById(R.id.bar_divider);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         initToolBar(mToolbar);
@@ -44,6 +47,11 @@ public abstract class BaseCompatActivity extends BaseActivity {
      */
     protected abstract int getContentLayoutId();
 
+    /**
+     * 初始化内容view
+     *
+     * @param content
+     */
     protected abstract void initContentView(View content);
 
     /**
@@ -52,13 +60,13 @@ public abstract class BaseCompatActivity extends BaseActivity {
      * @param toolbar ToolBar
      */
     protected void initToolBar(TitleBar toolbar) {
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                onBackPressedSupport();
             }
         });
-
+        toolbar.setCenterTitleColor(Color.BLACK);
     }
 }

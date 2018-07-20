@@ -21,11 +21,11 @@ public interface HomeApi {
     /**
      * 首页list
      *
-     * @param page
+     * @param page 页码，从0开始
      * @return
      */
     @GET("article/list/{page}/json")
-    Observable<BaseListResponse<FeedArticleEntity>> homeList(@Path("page") int page);
+    Observable<BaseListResponse<FeedArticleEntity>> feedList(@Path("page") int page);
 
     /**
      * 首页Banner
@@ -34,4 +34,20 @@ public interface HomeApi {
      */
     @GET("banner/json")
     Observable<BaseResponse<List<BannerEntity>>> banner();
+
+    /**
+     * 常用网站
+     *
+     * @return
+     */
+    @GET("friend/json")
+    Observable<BaseResponse> friendWebsite();
+
+    /**
+     * 搜索热词
+     *
+     * @return
+     */
+    @GET("hotkey/json")
+    Observable<BaseResponse> hotkey();
 }

@@ -8,6 +8,7 @@ import com.luojilab.component.componentlib.service.AutowiredService;
 import org.greenrobot.eventbus.EventBus;
 
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import me.yokeyword.fragmentation.SupportActivity;
 
 /**
@@ -60,5 +61,18 @@ public abstract class BaseActivity extends SupportActivity {
      */
     protected boolean useEventBus() {
         return false;
+    }
+
+    protected void addSubscribe(Disposable d) {
+        mCompositeDisposable.add(d);
+    }
+
+    @Override
+    protected void onDestroy() {
+        mCompositeDisposable.dispose();
+        if (useEventBus()){
+            EventBus.getDefault().unregister(this);
+        }
+        super.onDestroy();
     }
 }

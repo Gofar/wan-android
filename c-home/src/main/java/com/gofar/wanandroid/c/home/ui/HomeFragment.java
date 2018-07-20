@@ -8,7 +8,7 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.gofar.component.basiclib.base.BaseCompatListFragment;
-import com.gofar.component.basiclib.base.WebActivity;
+import com.gofar.component.basiclib.base.BaseWebActivity;
 import com.gofar.component.basiclib.entity.BaseListResponse;
 import com.gofar.component.basiclib.entity.BaseResponse;
 import com.gofar.component.basiclib.image.BannerImageLoader;
@@ -43,8 +43,9 @@ public class HomeFragment extends BaseCompatListFragment<FeedArticleEntity> {
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         FeedArticleEntity entity = mHomeItemAdapter.getData().get(position);
-        Intent intent = new Intent(mContext, WebActivity.class);
-        intent.putExtra("url", entity.getApkLink());
+        Intent intent = new Intent(mContext, BaseWebActivity.class);
+        intent.putExtra("url", entity.getLink());
+        intent.putExtra("title", entity.getTitle());
         startActivity(intent);
     }
 
@@ -73,7 +74,7 @@ public class HomeFragment extends BaseCompatListFragment<FeedArticleEntity> {
 
     @Override
     public Observable<BaseListResponse<FeedArticleEntity>> getObservable(int page) {
-        return Api.getInstance().build(HomeApi.class).homeList(page);
+        return Api.getInstance().build(HomeApi.class).feedList(page);
     }
 
     @Override
@@ -121,7 +122,7 @@ public class HomeFragment extends BaseCompatListFragment<FeedArticleEntity> {
         if (list == null || list.isEmpty()) {
             return;
         }
-        List<String> bannerTitles = new ArrayList<>();
+        final List<String> bannerTitles = new ArrayList<>();
         final List<String> bannerUrls = new ArrayList<>();
         List<String> bannerImageUrls = new ArrayList<>();
         for (BannerEntity entity : list) {
@@ -149,8 +150,9 @@ public class HomeFragment extends BaseCompatListFragment<FeedArticleEntity> {
         mBanner.setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(int position) {
-                Intent intent = new Intent(mContext, WebActivity.class);
+                Intent intent = new Intent(mContext, BaseWebActivity.class);
                 intent.putExtra("url", bannerUrls.get(position));
+                intent.putExtra("title", bannerTitles.get(position));
                 startActivity(intent);
             }
         });
