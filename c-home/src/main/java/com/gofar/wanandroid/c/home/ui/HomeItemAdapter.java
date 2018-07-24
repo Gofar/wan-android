@@ -8,7 +8,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.gofar.component.basiclib.image.glide.GlideImageLoader;
 import com.gofar.wanandroid.c.home.R;
-import com.gofar.wanandroid.c.home.entity.FeedArticleEntity;
+import com.gofar.basicres.entity.FeedArticleEntity;
 
 /**
  * @author lcf

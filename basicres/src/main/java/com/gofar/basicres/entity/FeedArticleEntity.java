@@ -1,4 +1,4 @@
-package com.gofar.wanandroid.c.home.entity;
+package com.gofar.basicres.entity;
 
 import java.util.List;
 

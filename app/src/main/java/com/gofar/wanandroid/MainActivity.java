@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.gofar.component.basiclib.base.BaseCompatActivity;
 import com.gofar.componentservice.home.HomeService;
+import com.gofar.componentservice.tree.TreeService;
 import com.gofar.titlebar.TitleBar;
 import com.gofar.wanandroid.utils.BottomNavigationViewHelper;
 import com.luojilab.component.componentlib.router.Router;
@@ -43,15 +44,19 @@ public class MainActivity extends BaseCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.tab_main_home:
+                        mToolbar.setCenterTitle("首页");
                         switchFragment(0);
                         break;
-                    case R.id.tab_main_navigation:
+                    case R.id.tab_main_tree:
+                        mToolbar.setCenterTitle("知识体系");
                         switchFragment(1);
                         break;
-                    case R.id.tab_main_project:
+                    case R.id.tab_main_navigation:
+                        mToolbar.setCenterTitle("导航");
                         switchFragment(2);
                         break;
-                    case R.id.tab_main_tree:
+                    case R.id.tab_main_project:
+                        mToolbar.setCenterTitle("项目");
                         switchFragment(3);
                         break;
                     default:
@@ -62,10 +67,10 @@ public class MainActivity extends BaseCompatActivity {
         });
 
         mFragments = new ArrayList<>();
-        mFragments.add(getFragment());
-        mFragments.add(getFragment());
-        mFragments.add(getFragment());
-        mFragments.add(getFragment());
+        mFragments.add(getHomeFragment());
+        mFragments.add(getTreeFragment());
+        mFragments.add(getHomeFragment());
+        mFragments.add(getHomeFragment());
 
         switchFragment(0);
     }
@@ -82,11 +87,20 @@ public class MainActivity extends BaseCompatActivity {
         toolbar.setCenterTitleColor(Color.BLACK);
     }
 
-    private Fragment getFragment() {
+    private Fragment getHomeFragment() {
         Router router = Router.getInstance();
         if (router.getService(HomeService.class.getSimpleName()) != null) {
             HomeService service = (HomeService) router.getService(HomeService.class.getSimpleName());
             return service.getHomeFragment();
+        }
+        return null;
+    }
+
+    private Fragment getTreeFragment() {
+        Router router = Router.getInstance();
+        if (router.getService(TreeService.class.getSimpleName()) != null) {
+            TreeService service = (TreeService) router.getService(TreeService.class.getSimpleName());
+            return service.getTreeFragment();
         }
         return null;
     }

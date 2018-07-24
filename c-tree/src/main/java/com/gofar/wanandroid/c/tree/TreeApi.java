@@ -1,5 +1,7 @@
 package com.gofar.wanandroid.c.tree;
 
+import com.gofar.basicres.entity.FeedArticleEntity;
+import com.gofar.component.basiclib.entity.BaseListResponse;
 import com.gofar.component.basiclib.entity.BaseResponse;
 import com.gofar.wanandroid.c.tree.entity.TreeEntity;
 
@@ -17,6 +19,7 @@ import retrofit2.http.Path;
 public interface TreeApi {
     /**
      * 体系数据
+     *
      * @return
      */
     @GET("tree/json")
@@ -29,5 +32,5 @@ public interface TreeApi {
      * @param page 页码，从0开始
      */
     @GET("article/list/{page}/json?cid={cid}")
-    Observable<BaseResponse> treeList(@Path("page") int page, @Path("cid") int cid);
+    Observable<BaseListResponse<FeedArticleEntity>> treeList(@Path("page") int page, @Path("cid") int cid);
 }

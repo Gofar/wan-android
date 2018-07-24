@@ -1,5 +1,8 @@
 package com.gofar.wanandroid.c.tree.entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 /**
@@ -7,7 +10,7 @@ import java.util.List;
  * @date 20/7/2018 下午 5:52
  * @since 1.0
  */
-public class TreeEntity {
+public class TreeEntity implements Parcelable{
 
     /**
      * children : []
@@ -26,6 +29,47 @@ public class TreeEntity {
     private int parentChapterId;
     private int visible;
     private List<TreeEntity> children;
+
+    public TreeEntity() {
+    }
+
+    protected TreeEntity(Parcel in) {
+        courseId = in.readInt();
+        id = in.readInt();
+        name = in.readString();
+        order = in.readInt();
+        parentChapterId = in.readInt();
+        visible = in.readInt();
+        children = in.createTypedArrayList(TreeEntity.CREATOR);
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(courseId);
+        dest.writeInt(id);
+        dest.writeString(name);
+        dest.writeInt(order);
+        dest.writeInt(parentChapterId);
+        dest.writeInt(visible);
+        dest.writeTypedList(children);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<TreeEntity> CREATOR = new Creator<TreeEntity>() {
+        @Override
+        public TreeEntity createFromParcel(Parcel in) {
+            return new TreeEntity(in);
+        }
+
+        @Override
+        public TreeEntity[] newArray(int size) {
+            return new TreeEntity[size];
+        }
+    };
 
     public int getCourseId() {
         return courseId;

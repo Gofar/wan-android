@@ -3,7 +3,7 @@ package com.gofar.wanandroid.c.home;
 import com.gofar.component.basiclib.entity.BaseListResponse;
 import com.gofar.component.basiclib.entity.BaseResponse;
 import com.gofar.wanandroid.c.home.entity.BannerEntity;
-import com.gofar.wanandroid.c.home.entity.FeedArticleEntity;
+import com.gofar.basicres.entity.FeedArticleEntity;
 
 import java.util.List;
 

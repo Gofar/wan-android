@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:padding="@dimen/dp_10"
+    android:background="?selectableItemBackground">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/iv_right"
+        android:layout_marginRight="@dimen/dp_10"
+        tool:text="android开发基础"/>
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/sp_14"
+        android:layout_below="@+id/tv_title"
+        android:layout_alignRight="@+id/tv_title"
+        android:layout_alignLeft="@+id/tv_title"
+        tool:text="四大组件 五大布局 网络 图片 数据库 四大组件 五大布局 网络 图片 数据库 四大组件 五大布局 网络 图片 数据库 "/>
+
+    <ImageView
+        android:id="@+id/iv_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_chevron_right_black_24dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"/>
+
+</RelativeLayout>

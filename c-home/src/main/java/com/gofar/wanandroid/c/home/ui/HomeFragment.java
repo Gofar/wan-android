@@ -17,7 +17,7 @@ import com.gofar.component.basiclib.network.Api;
 import com.gofar.wanandroid.c.home.HomeApi;
 import com.gofar.wanandroid.c.home.R;
 import com.gofar.wanandroid.c.home.entity.BannerEntity;
-import com.gofar.wanandroid.c.home.entity.FeedArticleEntity;
+import com.gofar.basicres.entity.FeedArticleEntity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
