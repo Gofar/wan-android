@@ -73,7 +73,7 @@ public class TreeFragment extends BaseFragment {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 TreeEntity entity = mTreeAdapter.getData().get(position);
-                Intent intent = new Intent();
+                Intent intent = new Intent(mContext,TreeDetailsActivity.class);
                 intent.putExtra("data", entity);
                 startActivity(intent);
             }

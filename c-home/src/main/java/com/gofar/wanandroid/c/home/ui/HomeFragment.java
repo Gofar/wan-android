@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.gofar.basicres.adapter.FeedItemAdapter;
 import com.gofar.component.basiclib.base.BaseCompatListFragment;
 import com.gofar.component.basiclib.base.BaseWebActivity;
 import com.gofar.component.basiclib.entity.BaseListResponse;
@@ -37,12 +38,12 @@ import io.reactivex.schedulers.Schedulers;
  * @since 1.0
  */
 public class HomeFragment extends BaseCompatListFragment<FeedArticleEntity> {
-    private HomeItemAdapter mHomeItemAdapter;
+    private FeedItemAdapter mFeedItemAdapter;
     private Banner mBanner;
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        FeedArticleEntity entity = mHomeItemAdapter.getData().get(position);
+        FeedArticleEntity entity = mFeedItemAdapter.getData().get(position);
         Intent intent = new Intent(mContext, BaseWebActivity.class);
         intent.putExtra("url", entity.getLink());
         intent.putExtra("title", entity.getTitle());
@@ -67,9 +68,9 @@ public class HomeFragment extends BaseCompatListFragment<FeedArticleEntity> {
     @Override
     public BaseQuickAdapter<FeedArticleEntity, ? extends BaseViewHolder> getAdapter() {
         mRefreshRecycleView.getRecyclerView().addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL));
-        mHomeItemAdapter = new HomeItemAdapter();
-        mHomeItemAdapter.addHeaderView(getHeader());
-        return mHomeItemAdapter;
+        mFeedItemAdapter = new FeedItemAdapter();
+        mFeedItemAdapter.addHeaderView(getHeader());
+        return mFeedItemAdapter;
     }
 
     @Override

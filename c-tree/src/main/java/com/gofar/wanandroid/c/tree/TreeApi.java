@@ -10,6 +10,7 @@ import java.util.List;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * @author lcf
@@ -31,6 +32,6 @@ public interface TreeApi {
      * @param cid  体系
      * @param page 页码，从0开始
      */
-    @GET("article/list/{page}/json?cid={cid}")
-    Observable<BaseListResponse<FeedArticleEntity>> treeList(@Path("page") int page, @Path("cid") int cid);
+    @GET("article/list/{page}/json")
+    Observable<BaseListResponse<FeedArticleEntity>> treeList(@Path("page") int page, @Query("cid") int cid);
 }
