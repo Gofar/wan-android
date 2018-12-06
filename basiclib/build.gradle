@@ -67,7 +67,7 @@ dependencies {
     api "me.yokeyword:fragmentation:$rootProject.fragmentationVersion"
     api "com.gofar:titlebar:$rootProject.titlebarVersion"
 
-    api "com.luojilab.ddcomponent:componentlib:$rootProject.componentlibVersion"
+    api "com.github.jimu:componentlib:$rootProject.componentlibVersion"
     api "com.youth.banner:banner:$rootProject.bannerVersion"
     api "com.just.agentweb:agentweb:$rootProject.agentwebVersion"
 }
