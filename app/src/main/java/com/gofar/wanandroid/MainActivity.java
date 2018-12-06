@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.gofar.component.basiclib.base.BaseCompatActivity;
 import com.gofar.componentservice.home.HomeService;
+import com.gofar.componentservice.navigation.NaviService;
 import com.gofar.componentservice.tree.TreeService;
 import com.gofar.titlebar.TitleBar;
 import com.gofar.wanandroid.utils.BottomNavigationViewHelper;
@@ -69,7 +70,7 @@ public class MainActivity extends BaseCompatActivity {
         mFragments = new ArrayList<>();
         mFragments.add(getHomeFragment());
         mFragments.add(getTreeFragment());
-        mFragments.add(getHomeFragment());
+        mFragments.add(getNaviFragment());
         mFragments.add(getHomeFragment());
 
         switchFragment(0);
@@ -101,6 +102,15 @@ public class MainActivity extends BaseCompatActivity {
         if (router.getService(TreeService.class.getSimpleName()) != null) {
             TreeService service = (TreeService) router.getService(TreeService.class.getSimpleName());
             return service.getTreeFragment();
+        }
+        return null;
+    }
+
+    private Fragment getNaviFragment(){
+        Router router=Router.getInstance();
+        if (router.getService(NaviService.class.getSimpleName())!=null){
+            NaviService service= (NaviService) router.getService(NaviService.class.getSimpleName());
+            return service.getNaviFragment();
         }
         return null;
     }

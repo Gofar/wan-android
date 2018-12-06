@@ -12,7 +12,6 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.gofar.component.basiclib.R;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -76,6 +75,10 @@ public class RefreshRecycleView extends FrameLayout {
         mRecyclerView.setLayoutManager(layoutManager);
     }
 
+    public void setAdapter(RecyclerView.Adapter adapter){
+        mRecyclerView.setAdapter(adapter);
+    }
+
     public void setEmptyText(String emptyText) {
         mLoadingLayout.setEmptyText(emptyText);
     }
@@ -114,10 +117,6 @@ public class RefreshRecycleView extends FrameLayout {
 
     public void setEnableAutoLoadMore(boolean enabled) {
         mRefreshLayout.setEnableAutoLoadMore(enabled);
-    }
-
-    public void setAdapter(BaseQuickAdapter adapter) {
-        mRecyclerView.setAdapter(adapter);
     }
 
     public void setOnRefreshListener(OnRefreshListener listener) {

@@ -1,6 +1,9 @@
 package com.gofar.wanandroid.c.navi;
 
 import com.gofar.component.basiclib.entity.BaseResponse;
+import com.gofar.wanandroid.c.navi.entity.NaviItemEntity;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -13,5 +16,5 @@ import retrofit2.http.GET;
 public interface NaviApi {
 
     @GET("navi/json")
-    Observable<BaseResponse> navi();
+    Observable<BaseResponse<List<NaviItemEntity>>> navi();
 }

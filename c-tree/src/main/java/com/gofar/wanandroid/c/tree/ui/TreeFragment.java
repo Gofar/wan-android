@@ -68,7 +68,7 @@ public class TreeFragment extends BaseFragment {
         });
 
         mTreeAdapter = new TreeAdapter(new ArrayList<TreeEntity>());
-        mRefreshRecycleView.getRecyclerView().setAdapter(mTreeAdapter);
+        mRefreshRecycleView.setAdapter(mTreeAdapter);
         mTreeAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -113,7 +113,7 @@ public class TreeFragment extends BaseFragment {
                         throwable.printStackTrace();
                         mRefreshRecycleView.finishRefresh(false);
                         if (mTreeAdapter.getData().isEmpty()) {
-                            mRefreshRecycleView.showError("");
+                            mRefreshRecycleView.showError("网络异常");
                         }
                     }
                 }));
