@@ -78,18 +78,6 @@ public class NaviFragment extends BaseFragment {
         mRvNavi.setAdapter(mAdapter);
         mRvNavi.setLayoutManager(new LinearLayoutManager(mContext));
         mRvNavi.getRecyclerView().addItemDecoration(new DividerItemDecoration(mContext,DividerItemDecoration.VERTICAL));
-//        mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
-//            @Override
-//            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-//                if (view.getId()==R.id.ll_navi_item){
-//                    NaviArticleEntity articleEntity
-//                    Intent intent = new Intent(mContext, BaseWebActivity.class);
-//                    intent.putExtra("url", entity.getLink());
-//                    intent.putExtra("title", entity.getTitle());
-//                    startActivity(intent);
-//                }
-//            }
-//        });
     }
 
     @Override

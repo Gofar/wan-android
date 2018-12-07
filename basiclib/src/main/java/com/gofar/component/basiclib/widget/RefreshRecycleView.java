@@ -7,7 +7,6 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
@@ -152,10 +151,13 @@ public class RefreshRecycleView extends FrameLayout {
     }
 
     public void showError(String errorMsg) {
-        if (TextUtils.isEmpty(errorMsg)) {
-            errorMsg = getContext().getString(R.string.default_http_error_msg);
+//        if (TextUtils.isEmpty(errorMsg)) {
+//            errorMsg = getContext().getString(R.string.default_http_error_msg);
+//        }
+//        mLoadingLayout.setErrorText(errorMsg);
+        if(mLoadingLayout!=null) {
+            mLoadingLayout.showError();
         }
-        mLoadingLayout.setErrorText(errorMsg).showError();
     }
 
     public void showError(String errorMsg, @DrawableRes int errorResId) {
